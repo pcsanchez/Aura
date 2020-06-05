@@ -1,0 +1,72 @@
+program sum_matrix
+
+start
+
+dim select as int;
+dim X as float;
+dim Y as float;
+dim i as int;
+dim fact as float;
+dim ans as float;
+
+subroutine Factorial
+    ans = 1;
+	for i=1; to X
+		ans = ans * i;
+	next i
+    ans = ans * X;
+return
+
+subroutine Power
+    ans = X^Y;
+return
+
+subroutine Percentage
+    ans = X*(1+Y/100);
+return
+
+subroutine menu
+    println("Welcome, please select an option");
+    println("Enter 1 for Factorial");
+    println("Enter 2 for Power");
+    println("Enter 3 for Percentage");
+    println("Enter 4 to Quit");
+    print("select: ");
+    input(select);
+    if(select != 4)
+    then
+        print("X: ");
+        input(X);
+        if(select == 1)
+        then
+            gosub Factorial;
+        end
+        if(select == 2)
+        then
+            print("Y: ");
+            input(Y);
+            gosub Power;
+        end
+        if(select == 3)
+        then
+            print("Y: ");
+            input(Y);
+            gosub Percentage;
+        end
+        print("Answer: ");
+        println(ans);
+    else
+        println("Bye");
+    end
+
+return
+
+select = 1;
+
+gosub menu;
+
+while(select != 4)
+    gosub menu;
+end
+
+finish

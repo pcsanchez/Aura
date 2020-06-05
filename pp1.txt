@@ -1,0 +1,51 @@
+program roots
+
+start
+
+dim a as float;
+dim b as float;
+dim c as float;
+
+dim root as float;
+
+dim eps as float;
+dim x as float;
+dim left as float;
+dim right as float;
+dim center as float;
+dim den as float;
+dim num as float;
+
+dim aux as float;
+
+subroutine sqrt
+    right = x; 
+    left = 0;
+    while(right - left > eps)
+        center = (left + right)/2;
+        if (center * center > x) then
+            right = center;
+        else
+            left = center;
+        end
+    end
+    root = left;
+return
+
+subroutine GetValues
+    println("ax2+bx+c: ");
+    input(a);
+    input(b);
+    input(c);
+return
+
+gosub GetValues;
+
+eps = 0.001;
+x = (b*b - 4*a*c);
+gosub sqrt;
+
+println((b*(-1)+root)/(2*a));
+println((b*(-1)-root)/(2*a));
+
+finish

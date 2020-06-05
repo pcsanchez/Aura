@@ -1,0 +1,68 @@
+program sort
+
+start
+
+dim array[10] as int;
+dim len as int;
+dim i as int;
+dim j as int;
+dim x as int;
+
+dim option as int;
+
+dim aux as int;
+
+subroutine ReadArray
+    println("Insert array length");
+    input(len);
+
+    println("Insert array elements");
+    for i=0; to len
+        input(array[i]);
+    next i
+
+    println("The array is:");
+    for i=0; to len
+        x = array[i];
+        print(x);
+        print(" ");
+      
+    next i
+    println(" ");
+return
+
+subroutine SortArray
+    for i=0; to len
+        for j=i; to len
+            if(array[j]<array[i])
+            then
+                aux = array[i];
+                array[i] = array[j];
+                array[j] = aux;
+            end
+        next j
+    next i
+
+    println("Ordered Array:");
+    for i=0; to len
+        x = array[i];
+        print(x);
+        print(" ");
+    next i
+    println("");
+return
+
+
+gosub ReadArray;
+gosub SortArray;
+
+println("Do you want to sort another array? (1) Yes (2) No");
+input(option);
+while(option == 1)
+    gosub ReadArray;
+    gosub SortArray;
+    println("Do you want to sort another array? (1) Yes (2) No");
+    input(option);
+end
+
+finish

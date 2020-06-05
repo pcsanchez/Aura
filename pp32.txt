@@ -1,0 +1,13 @@
+program mod
+
+start
+
+dim digit as float;
+dim digit_two as float;
+
+
+digit = 5;
+digit_two = 6;
+println(digit * digit_two);
+
+finish

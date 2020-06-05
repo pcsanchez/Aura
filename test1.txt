@@ -1,0 +1,111 @@
+program sum_matrix
+
+start
+
+dim a[5][5] as int;
+dim b[5][5] as int;
+dim res[5][5] as int;
+dim temp as int;
+dim ax as int;
+dim ay as int;
+dim bx as int;
+dim by as int;
+
+dim i as int;
+dim j as int;
+dim k as int;
+
+dim option as int;
+
+subroutine input_values
+    println("Input value for ax");
+    input(ax);
+    println("Input value for ay");
+    input(ay);
+    println("Input value for bx");
+    input(bx);
+    println("Input value for by");
+    input(by);
+return
+
+subroutine read_values
+    println("Insert Matrix Values for Matrix A");
+    for i=0; to ax
+        for j=0; to ay
+            input(a[i][j]);
+        next j
+    next i
+
+    println("Insert Matrix Values for Matrix B");
+    for i=0; to bx
+        for j=0; to by
+            input(b[i][j]);
+        next j
+    next i
+return
+
+subroutine add_matrix
+    for i=0; to ax
+        for j=0; to ay
+            res[i][j] = a[i][j] + b[i][j];
+        next j
+    next i
+
+    for i=0; to ax
+	    for j=0; to ay
+		    print(res[i][j]);
+            print(" ");
+	    next j
+	    println("");
+    next i
+return
+
+subroutine mult_matrix
+    for i=0; to ax
+        for j=0; to by
+            for k=0; to ay
+                res[i][j] = res[i][j] + (a[i][k] * b[k][j]);
+            next k
+        next j
+    next i
+
+    for i=0; to ax
+        for j=0; to by
+            print(res[i][j]);
+            print(" ");
+        next j
+        println("");
+    next i
+return
+
+gosub input_values;
+
+while(ax >= 5 || ay >= 5 || bx >= 5 || by >= 5)
+    println("The values exceed the limits of the matrix");
+    println("Please insert new values");
+    gosub input_values;
+end
+
+gosub read_values;
+
+println("Choose Desired Action");
+println("Enter a 1 to add the matrices");
+println("Enter a 2 to multiply the matrices");
+
+input(option);
+
+if(option == 1) then
+    if(ax == bx && ay == by) then
+        gosub add_matrix;
+    else
+        println("Can't add matrices of different dimensions");
+    end
+end
+if(option == 2) then
+    if(ay == bx) then
+        gosub mult_matrix;
+    else
+        println("Incompatible dimensions");
+    end
+end
+finish

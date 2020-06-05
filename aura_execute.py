@@ -39,7 +39,7 @@ def GetValue(element):
   if(t == 'int'):
     return int(element)
   if(t == 'float'):
-    return Decimal(element)
+    return float(element)
     
 def GetValueArray(element):
   elem = element.copy()
@@ -48,7 +48,10 @@ def GetValueArray(element):
     indexes[i] = GetValue(indexes[i])
   dimensions = program_variables[elem[0]].get('dimensions').copy()
   offset = GetOffset(dimensions, indexes)
-  real_value = int(program_variables[elem[0]].get('value')[offset])
+  if('float' in program_variables[elem[0]].get('type')):
+    real_value = float(program_variables[elem[0]].get('value')[offset])
+  else:
+    real_value = int(program_variables[elem[0]].get('value')[offset])
   return real_value
 
 def SetValue(val, target):
@@ -364,7 +367,7 @@ def DefineVariables():
 
 if __name__ == '__main__':
     global program_counter, data, quads, variables, program_variables, program_stack
-    getcontext().prec=2
+    getcontext().prec=4
     program_counter = 0
     data = pickle.load(open("out.p","rb"))
     quads = data['Quadruples']

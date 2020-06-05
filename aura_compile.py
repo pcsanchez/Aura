@@ -498,6 +498,9 @@ def p_F(p):
     global symbol_table, error_list
     if(len(p)==4 and not p[1] == '('):
         jump = goto_stack.pop()
+        if(p[1] not in symbol_table):
+            print("Undeclared Identifier in line " + str(p.lineno(2)))
+            sys.exit()
         if(isinstance(symbol_table[p[1]], tuple)):
             if('Array' in symbol_table[p[1]][0]):
                 quadruples[jump] = ('BCHECK', p[2], symbol_table[p[1]][1])
