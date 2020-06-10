@@ -3,6 +3,8 @@ program sort
 start
 
 dim array[10] as int;
+dim test[10][10][10][10] as int;
+dim test2[5] as int;
 dim len as int;
 dim i as int;
 dim j as int;
@@ -55,6 +57,10 @@ return
 
 gosub ReadArray;
 gosub SortArray;
+
+test2[3] = 3;
+test[test2[3]][4][5][7] = 8;
+println(test[3][4][5][7]);
 
 println("Do you want to sort another array? (1) Yes (2) No");
 input(option);

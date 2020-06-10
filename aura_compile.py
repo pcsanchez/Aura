@@ -69,6 +69,7 @@ t_SEMICOLON = r'\;'
 
 t_ignore = ' \t'
 
+
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reserved.get(t.value,'ID')
@@ -135,15 +136,13 @@ def p_SUBROURINTE_RULE(p):
     if(len(p) > 2):
         global quadruples, symbol_table
         quadruples.append(('RETURN'))
-        symbol_table[p[2]] = symbol_table['temp']
-        del symbol_table['temp']
 
 def p_SUBACTION(p):
     '''
     SUBACTION :
     '''
     global symbol_table, quadruples
-    symbol_table['temp'] = ('ROUTINE', len(quadruples))
+    symbol_table[p[-1]] = ('ROUTINE', len(quadruples))
 
 
 def p_DECL(p):
@@ -248,6 +247,7 @@ def p_GOSUB_RULE(p):
     '''
     global symbol_table, quadruples, error_list
     if( p[2] not in symbol_table.keys()):
+        print(symbol_table);
         error_list.append("Undeclared Identifier in line " + str(p.lineno(2)))
     elif(not isinstance(symbol_table[p[2]], tuple)):
         error_list.append("Wrong Type of Identifier in line " + str(p.lineno(2)))

@@ -21,7 +21,10 @@ dim aux as float;
 subroutine sqrt
     right = x; 
     left = 0;
+    println(x);
     while(right - left > eps)
+        println(center);
+        input(den);
         center = (left + right)/2;
         if (center * center > x) then
             right = center;

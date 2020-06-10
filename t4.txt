@@ -1,0 +1,9 @@
+program test
+
+start
+
+dim x as int;
+
+x = -3;
+
+finish

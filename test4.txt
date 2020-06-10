@@ -1,0 +1,29 @@
+program matrixes
+
+start
+
+dim curr as int;
+dim aux1 as int;
+dim aux2 as int;
+dim counter as int;
+
+subroutine fib
+    if(counter < 10) then
+        counter = counter + 1;
+        aux1 = aux2;
+        aux2 = curr;
+        curr = aux1 + aux2;
+        println(curr);
+        gosub fib;
+    end
+return
+
+counter = 0;
+aux1 = 1;
+aux2 = 1;
+curr = 1;
+println(1);
+println(1);
+gosub fib;
+
+finish

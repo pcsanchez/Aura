@@ -217,6 +217,7 @@ def BoundCheck(inst):
         program_counter == len(quads)
     else:
         for (indx, value) in enumerate(target):
+            value = GetValue(value)
             if(value in program_variables.keys()):
                 value = program_variables[value].get('value')
             if(value >= bounds[indx]):
